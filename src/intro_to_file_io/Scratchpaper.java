@@ -40,3 +40,4 @@ public class Scratchpaper {
 	}
 
 }
+//Copyright © 2017 by Chloe :)
