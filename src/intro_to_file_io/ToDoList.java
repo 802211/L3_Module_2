@@ -84,7 +84,7 @@ public class ToDoList implements ActionListener {
 
 			try {
 				FileReader fr = new FileReader("ToDoList.txt");
-
+				int read = fr.read();
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
