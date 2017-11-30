@@ -1,1 +1,3 @@
-01
+wake up
+eat
+sleep

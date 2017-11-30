@@ -2,6 +2,7 @@ package intro_to_file_io;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -61,10 +62,15 @@ public class ToDoList implements ActionListener {
 
 		if (e.getSource() == add) {
 			String task = JOptionPane.showInputDialog("Add a task to the list.");
-			list.add(task);
+			list.add(task + "\n");
 
 		} else if (e.getSource() == remove) {
-			String remove = JOptionPane.showInputDialog("Input the number of the task you would like to remove.");
+			String showlist = "";
+			for (int k = 0; k < list.size(); k++) {
+				showlist += "\n" + k + ". " + list.get(k);
+			}
+			String remove = JOptionPane
+					.showInputDialog("Input the number of the task you would like to remove." + showlist);
 			int Remove = Integer.parseInt(remove);
 			list.remove(Remove);
 			// System.out.println(list);
@@ -81,11 +87,19 @@ public class ToDoList implements ActionListener {
 			}
 
 		} else if (e.getSource() == load) {
-
+			list.clear();
 			try {
-				FileReader fr = new FileReader("ToDoList.txt");
-				int read = fr.read();
+				BufferedReader br = new BufferedReader(new FileReader("ToDoList.txt"));
+
+				String read = br.readLine();
+				while (read != null) {
+					list.add(read);
+					read = br.readLine();
+				}
 			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
